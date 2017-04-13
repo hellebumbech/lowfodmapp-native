@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../../shared/data.service';
 import { Kulhydrattype } from '../../shared/kulhydrattype';
 import { Router } from "@angular/router";
+import { LoadingIndicator } from "nativescript-loading-indicator";
 
 @Component({
     selector: "registrering",
@@ -13,9 +14,10 @@ import { Router } from "@angular/router";
 export class RegistreringComponent {
     kulhydrattyper:Kulhydrattype[];
     intolerance:string[];
-    isLoading: boolean = !this.kulhydrattyper;
+    loader = new LoadingIndicator();
 
     constructor(private dataService: DataService, private router: Router) {
+        this.loader.show();
         this.dataService.getKulhydrattyper().subscribe(kulhydrattyper => {
             this.kulhydrattyper = kulhydrattyper;
             this.intolerance = this.dataService.getIntolerance();
@@ -26,7 +28,7 @@ export class RegistreringComponent {
                     }
                 }
             };
-            this.isLoading = false;
+            this.loader.hide();
         })
     }
 

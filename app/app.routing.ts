@@ -8,7 +8,7 @@ import { DetaljevisningComponent } from "./pages/detaljevisning/detaljevisning.c
 import { DetaljevisningResolver } from "./pages/detaljevisning/detaljevisning.resolver";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/registrering", pathMatch: "full" },
+    { path: "", redirectTo: "/soegning", pathMatch: "full" },
     { path: "registrering", component: RegistreringComponent },
     { path: "soegning", component: SoegningComponent },
     { 

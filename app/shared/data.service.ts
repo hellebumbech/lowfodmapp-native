@@ -3,7 +3,7 @@ import { Http, Headers, Response } from "@angular/http";
 import { Observable } from "rxjs/Rx";
 import "rxjs/add/operator/do";
 import 'rxjs/add/operator/map';
-
+import { LoadingIndicator } from "nativescript-loading-indicator";
 import { Kulhydrattype } from './kulhydrattype';
 
 @Injectable()
@@ -11,6 +11,7 @@ import { Kulhydrattype } from './kulhydrattype';
 export class DataService {
 
     applicationSettings = require("application-settings");
+    loader = new LoadingIndicator();
 
     constructor(private http: Http) {}
 
@@ -25,14 +26,17 @@ export class DataService {
     }
 
     getFoedevareById(foedevareId:string) {
+        this.loader.show();
         return this.getFoedevarerJson()
         .map(res => {
             var foedevarer = res.json().foedevarer;
             for(var item in foedevarer) {
                 if(foedevarer[item].id == foedevareId) {
+                    this.loader.hide()
                     return foedevarer[item];
                 }
-          }
+            };
+        this.loader.hide()
         });
     }
 
@@ -57,7 +61,8 @@ export class DataService {
     }
 
     getIntolerance():string[] {
-        var intoleranceJson = JSON.parse(this.applicationSettings.getString("intolerance"));
-        return (intoleranceJson ? intoleranceJson.intolerance : []);
+        var gemtIntolerance = this.applicationSettings.getString("intolerance");
+        return (gemtIntolerance ? JSON.parse(gemtIntolerance).intolerance : []);
     }
+
 }

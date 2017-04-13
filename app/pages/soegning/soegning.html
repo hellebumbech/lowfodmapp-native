@@ -1,10 +1,11 @@
-<ActionBar title="Søg" class="action-bar"></ActionBar>
+<ActionBar title="Søg" class="action-bar">
+    <NavigationButton text="Registrer" android.systemIcon="ic_menu_edit" (tap)="registrering()"></NavigationButton>
+</ActionBar>
 <StackLayout>
     <GridLayout columns="*, 60" rows="auto" class="soegefelt">
         <TextField row="0" col="0" class="input input-rounded" hint="Søg fødevare" [(ngModel)]="soegetekst" (ngModelChange)="filterItem($event)"></TextField>
         <Button row="0" col="1" text="Nulstil" (tap)="filterItem('')"></Button>
     </GridLayout>
-    <ActivityIndicator *ngIf="isLoading" [busy]="isLoading" width="50" height="50"></ActivityIndicator>
     <ListView [items]="filtreredeFoedevarer" class="list-group">
         <ng-template let-foedevare="item">
                 <Label [text]="foedevare.navn" [nsRouterLink]="['/foedevare', foedevare.id]"></Label>

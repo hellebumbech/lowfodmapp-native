@@ -3,6 +3,7 @@ import { DataService } from '../../shared/data.service';
 import { Foedevare } from '../../shared/foedevare';
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Router, NavigationStart, NavigationEnd } from "@angular/router";
+import { LoadingIndicator } from "nativescript-loading-indicator";
 
 @Component({
     selector: "soegning",
@@ -12,17 +13,17 @@ import { Router, NavigationStart, NavigationEnd } from "@angular/router";
 })
 
 export class SoegningComponent {
-    isLoading: boolean;
     foedevarer: Foedevare[];
     filtreredeFoedevarer: Foedevare[];
     soegetekst: string;
+    loader = new LoadingIndicator();
 
-    constructor(private dataService: DataService) {
-        this.isLoading = true;
+    constructor(private dataService: DataService, private router: Router) {
+        this.loader.show();
         this.dataService.getFoedevarer()
         .subscribe(foedevarer => {
             this.foedevarer = this.filtreredeFoedevarer = foedevarer;
-            this.isLoading = false;
+            this.loader.hide();
         });
     };
 
@@ -38,6 +39,10 @@ export class SoegningComponent {
         this.filtreredeFoedevarer = (<any>Object).assign([], this.foedevarer).filter(
             foedevare => foedevare.navn.toLowerCase().indexOf(value.toLowerCase()) > -1
         )
+    }
+
+    registrering() {
+        this.router.navigate(["/registrering"]);
     }
 
 }

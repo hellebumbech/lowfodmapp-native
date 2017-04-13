@@ -8,8 +8,8 @@ export class DetaljevisningService {
   applicationSettings = require("application-settings");
 
   getIntolerance():string[] {
-        var intoleranceJson = JSON.parse(this.applicationSettings.getString('intolerance'));
-        return (intoleranceJson ? intoleranceJson.intolerance : []);
+        var gemtIntolerance = this.applicationSettings.getString('intolerance');
+        return gemtIntolerance ? JSON.parse(gemtIntolerance).intolerance : [];
     }
 
     getKulhydraterIFoedevare(foedevare:Foedevare):string[] {

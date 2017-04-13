@@ -7,7 +7,8 @@ import { Foedevare } from '../../shared/foedevare';
 
 export class DetaljevisningResolver implements Resolve<any> {
 
-  constructor(private dataservice: DataService) {}
+  constructor(private dataservice: DataService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot) {
     return this.dataservice.getFoedevareById(route.params['id']);
