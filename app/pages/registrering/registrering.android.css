@@ -1,0 +1,12 @@
+StackLayout {
+    margin: 30 40;
+}
+
+Label.overskrift {
+    font-size: 20;
+}
+
+Button {
+    font-size: 15;
+    margin: 30 60;
+}

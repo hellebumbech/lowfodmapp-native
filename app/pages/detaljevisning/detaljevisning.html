@@ -1,0 +1,14 @@
+<ActionBar [title]="foedevare.navn" class="action-bar"></ActionBar>
+<StackLayout>
+
+    <Image *ngIf="foedevareIntolerance === 'OK'" src="res://smiley_green"></Image>
+    <Image *ngIf="foedevareIntolerance === 'SEMI_OK'" src="res://smiley_yellow"></Image>
+    <Image *ngIf="foedevareIntolerance === 'IKKE_OK'" src="res://smiley_red"></Image>
+
+    <Label *ngIf="foedevareIntolerance === 'SEMI_OK'" [text]="foedevare.begraensningtekst"></Label>
+
+    <TextView editable="false" *ngIf="foedevareIntolerance !== 'OK'" [text]="foedevare.navn + ' indeholder ' + sukkerstofferIFoedevare.join(', ')"></TextView>
+
+    <Label *ngIf="foedevareIntolerance === 'OK'" text="Spis løs!"></Label>
+
+</StackLayout>

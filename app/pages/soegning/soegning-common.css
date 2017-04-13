@@ -1,0 +1,12 @@
+.soegefelt {
+    margin: 30;
+}
+
+TextField {
+    font-size: 20;
+    padding: 10;
+}
+
+Label {
+    margin: 5 30;
+}

@@ -1,0 +1,9 @@
+Image {
+    margin: 50 50 50 25;
+}
+
+Label, TextView {
+    font-size: 17;
+    text-align: center;
+    margin: 0 10 10 10;
+}

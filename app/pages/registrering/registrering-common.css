@@ -1,0 +1,14 @@
+GridLayout {
+    margin: 5 0;
+}
+
+Label.overskrift {
+    margin-bottom: 30;
+    text-align: center;
+}
+
+Button {
+    background-color: orangered;
+    color: white;
+    border-radius: 15;
+}

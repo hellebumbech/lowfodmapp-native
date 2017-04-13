@@ -1,0 +1,10 @@
+<ActionBar title="Registrer" class="action-bar"></ActionBar>
+<StackLayout>
+    <Label text="Registrer din intolerance" class="overskrift"></Label>
+    <ActivityIndicator *ngIf="isLoading" [busy]="isLoading" width="50" height="50"></ActivityIndicator>
+    <GridLayout columns="180, auto" rows="auto" *ngFor="let kulhydrattype of kulhydrattyper">
+        <Label col="0" [text]="kulhydrattype.sukkerstof"></Label>
+        <Switch col="1" [(ngModel)]="kulhydrattype.intolerance"></Switch>
+    </GridLayout>
+    <Button (tap)="gemIntolerance()" text="OK"></Button>
+</StackLayout>
