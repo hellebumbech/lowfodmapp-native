@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 export class RegistreringComponent {
     kulhydrattyper:Kulhydrattype[];
     intolerance:string[];
-    isLoading: boolean = this.kulhydrattyper != undefined && this.kulhydrattyper !== null && this.kulhydrattyper.length > 0;
+    isLoading: boolean = !this.kulhydrattyper;
 
     constructor(private dataService: DataService, private router: Router) {
         this.dataService.getKulhydrattyper().subscribe(kulhydrattyper => {
