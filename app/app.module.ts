@@ -6,6 +6,7 @@ import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
 import { DataService } from "./shared/data.service";
+import { CommonService } from "./shared/common.service";
 import { RegistreringComponent } from "./pages/registrering/registrering.component";
 import { SoegningComponent } from "./pages/soegning/soegning.component";
 import { DetaljevisningComponent } from "./pages/detaljevisning/detaljevisning.component";
@@ -29,7 +30,8 @@ import { DetaljevisningResolver } from "./pages/detaljevisning/detaljevisning.re
     ],
     providers: [
         DataService,
-        DetaljevisningResolver
+        DetaljevisningResolver,
+        CommonService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

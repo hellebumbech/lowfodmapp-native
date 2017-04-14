@@ -3,12 +3,13 @@ import { DataService } from '../../shared/data.service';
 import { Kulhydrattype } from '../../shared/kulhydrattype';
 import { Router } from "@angular/router";
 import { LoadingIndicator } from "nativescript-loading-indicator";
+import { CommonService } from '../../shared/common.service';
 
 @Component({
     selector: "registrering",
     templateUrl: "pages/registrering/registrering.html",
     styleUrls: ["pages/registrering/registrering-common.css", "pages/registrering/registrering.css"],
-    providers: [ DataService ]
+    providers: [ DataService, CommonService ]
 })
 
 export class RegistreringComponent {
@@ -16,8 +17,9 @@ export class RegistreringComponent {
     intolerance:string[];
     loader = new LoadingIndicator();
 
-    constructor(private dataService: DataService, private router: Router) {
+    constructor(private dataService: DataService, private router: Router, private commonService: CommonService) {
         this.loader.show();
+        this.commonService.hideKeyboard();
         this.dataService.getKulhydrattyper().subscribe(kulhydrattyper => {
             this.kulhydrattyper = kulhydrattyper;
             this.intolerance = this.dataService.getIntolerance();

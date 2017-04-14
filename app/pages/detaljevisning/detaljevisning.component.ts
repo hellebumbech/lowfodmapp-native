@@ -3,16 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Foedevare } from '../../shared/foedevare';
 import { DetaljevisningService } from './detaljevisning.service';
 import { LoadingIndicator } from "nativescript-loading-indicator";
-
-import * as app from 'application'; 
-import { isAndroid } from 'platform';
-declare var android: any;
+import { CommonService } from "../../shared/common.service";
 
 @Component({
     selector: 'visning',
     templateUrl: "pages/detaljevisning/detaljevisning.html",
 	styleUrls: ["pages/detaljevisning/detaljevisning-common.css", "pages/detaljevisning/detaljevisning.css"],
-	providers: [ DetaljevisningService ]
+	providers: [ DetaljevisningService, CommonService ]
 })
 
 export class DetaljevisningComponent implements OnInit {
@@ -23,9 +20,10 @@ export class DetaljevisningComponent implements OnInit {
 
 	constructor(
 		private route: ActivatedRoute, 
-		private detaljevisningService: DetaljevisningService
+		private detaljevisningService: DetaljevisningService,
+		private commonService: CommonService
 	) {
-		this.hideKeyboard();
+		this.commonService.hideKeyboard();
 	}
 
 	ngOnInit() {
@@ -34,17 +32,4 @@ export class DetaljevisningComponent implements OnInit {
 		this.sukkerstofferIFoedevare = this.detaljevisningService.getKulhydraterIFoedevare(this.foedevare);
 	}
 
-
-	private hideKeyboard() {
-		if (isAndroid) {
-			try {
-				let activity = app.android.foregroundActivity;
-				let Context = app.android.currentContext;
-				let inputManager = Context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
-				inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), (android as any).view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS);
-			} catch (err) {
-				console.log(err);
-			}
-		}
-	}
 }
